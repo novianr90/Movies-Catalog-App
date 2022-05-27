@@ -33,8 +33,12 @@ class LocalRepository(context: Context) {
         db?.profileDao()?.getPassword(password)
     }
 
-    suspend fun getUsername(email: String) = withContext(Dispatchers.IO) {
-        db?.profileDao()?.getUsername(email)
+    suspend fun getUsername(username: String) = withContext(Dispatchers.IO) {
+        db?.profileDao()?.getUsername(username)
+    }
+
+    suspend fun getUsernameByEmail(email: String) = withContext(Dispatchers.IO) {
+        db?.profileDao()?.getUsernameByEmail(email)
     }
     //End Profile
 

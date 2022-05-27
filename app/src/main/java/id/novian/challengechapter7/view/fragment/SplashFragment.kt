@@ -4,13 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import id.novian.challengechapter7.base.BaseFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import dagger.hilt.android.AndroidEntryPoint
 import id.novian.challengechapter7.databinding.FragmentSplashBinding
+import id.novian.challengechapter7.viewmodel.SplashViewModel
+import kotlinx.coroutines.delay
 
-
-class SplashFragment : BaseFragment() {
+@AndroidEntryPoint
+class SplashFragment : Fragment() {
     private var _binding: FragmentSplashBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: SplashViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,5 +34,21 @@ class SplashFragment : BaseFragment() {
         _binding = null
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launchWhenCreated {
+            splashNextToPage()
+        }
+    }
 
+    private suspend fun splashNextToPage() {
+        delay(2000)
+        viewModel.checkStatusLogin().observe(requireActivity()) {
+            if (!it) {
+                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToHome2())
+            } else {
+                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToLogin())
+            }
+        }
+    }
 }

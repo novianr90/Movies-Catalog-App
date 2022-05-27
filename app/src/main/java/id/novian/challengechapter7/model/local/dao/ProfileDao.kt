@@ -21,5 +21,8 @@ interface ProfileDao {
     fun getPassword(pass: String): String
 
     @Query("SELECT username FROM Profile WHERE email = :email")
-    fun getUsername(email: String): String
+    fun getUsernameByEmail(email: String): String
+
+    @Query("SELECT username FROM Profile WHERE username = :username")
+    fun getUsername(username: String): String
 }
