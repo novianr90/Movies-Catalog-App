@@ -3,8 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/drawable/bg_edit_text.xml" value="0.1945" />
+        <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/drawable/ic_favorites_movie.xml" value="0.1945" />
+        <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/drawable/ic_image_error.xml" value="0.1045" />
+        <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/drawable/ic_profile.xml" value="0.1945" />
         <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/layout/activity_main.xml" value="0.22447916666666667" />
+        <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/layout/fragment_details.xml" value="0.22447916666666667" />
+        <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/layout/fragment_favorite.xml" value="0.22447916666666667" />
+        <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/layout/fragment_login.xml" value="0.22" />
+        <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
+        <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/layout/fragment_register.xml" value="0.1" />
         <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/layout/fragment_splash.xml" value="0.1" />
+        <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/layout/grid_item.xml" value="0.2234375" />
+        <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/layout/item_favories.xml" value="0.2234375" />
+        <entry key="..\:/AndroidThings/ChallengeChapter7/app/src/main/res/layout/item_favorites.xml" value="0.33" />
       </map>
     </option>
   </component>
