@@ -31,6 +31,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+
     fun getAllPopularMovies() = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
 

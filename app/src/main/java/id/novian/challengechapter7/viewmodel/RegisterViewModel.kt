@@ -32,6 +32,12 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
+    fun saveEmail(email: String) {
+        viewModelScope.launch {
+            dataStoreManager.saveEmail(email)
+        }
+    }
+
     fun insertProfile(profile: Profile) {
         viewModelScope.launch {
             localRepository.insertProfile(profile)

@@ -31,4 +31,10 @@ class LoginViewModel @Inject constructor(
             }
         }
     }
+
+    fun saveStatusLogin() {
+        viewModelScope.launch {
+            dataStoreManager.saveStatusLogin()
+        }
+    }
 }

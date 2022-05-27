@@ -36,7 +36,7 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launchWhenCreated {
+        lifecycleScope.launchWhenResumed {
             splashNextToPage()
         }
     }
@@ -44,7 +44,7 @@ class SplashFragment : Fragment() {
     private suspend fun splashNextToPage() {
         delay(2000)
         viewModel.checkStatusLogin().observe(requireActivity()) {
-            if (!it) {
+            if (it) {
                 findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToHome2())
             } else {
                 findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToLogin())

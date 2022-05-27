@@ -65,7 +65,12 @@
         android:id="@+id/details"
         android:name="id.novian.challengechapter7.view.fragment.Details"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="movieId"
+            android:defaultValue="1"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/profile"
         android:name="id.novian.challengechapter7.view.fragment.Profile"

@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import dagger.hilt.android.AndroidEntryPoint
 import id.novian.challengechapter7.databinding.FragmentDetailsBinding
 
-
+@AndroidEntryPoint
 class Details : Fragment() {
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
