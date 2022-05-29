@@ -1,8 +1,6 @@
 package id.novian.challengechapter7.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.novian.challengechapter7.helper.DataStoreManager
 import id.novian.challengechapter7.helper.Resource
@@ -19,7 +17,11 @@ class ProfileViewModel @Inject constructor(
     private val dataStoreManager: DataStoreManager
 ) : ViewModel() {
 
+    private var _imgSrc = MutableLiveData<String>()
+    val imgSrc: LiveData<String> get() = _imgSrc
+
     fun getDataProfile(email: String) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(data = null))
         try {
             emit(Resource.success(data = localRepository.getProfile(email)))
         } catch (exception: Exception) {
@@ -36,6 +38,12 @@ class ProfileViewModel @Inject constructor(
     fun insertImageSrc(imageSource: ImageSource) {
         viewModelScope.launch {
             localRepository.insertImageSrc(imageSource)
+        }
+    }
+
+    fun getImageSrc(email: String) {
+        viewModelScope.launch {
+            _imgSrc.postValue(localRepository.getImageByEmail(email))
         }
     }
 

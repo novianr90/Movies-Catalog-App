@@ -37,7 +37,7 @@ class HomeAdapter(private val onClickListener: (id: Int) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-
+        holder.bind(differ.currentList[position])
     }
 
     override fun getItemCount() = differ.currentList.size

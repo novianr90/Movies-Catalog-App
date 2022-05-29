@@ -56,8 +56,8 @@
         android:label="fragment_register"
         tools:layout="@layout/fragment_register">
         <action
-            android:id="@+id/action_register_to_home2"
-            app:destination="@id/home2"
+            android:id="@+id/action_register_to_login"
+            app:destination="@id/login"
             app:popUpTo="@id/register"
             app:popUpToInclusive="true" />
     </fragment>
@@ -81,6 +81,10 @@
             app:destination="@id/login"
             app:popUpTo="@id/profile"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="emailProfile"
+            android:defaultValue="default"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/favorite"

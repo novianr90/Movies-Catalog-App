@@ -25,16 +25,11 @@ class LoginViewModel @Inject constructor(
 
             if (!emailDb.isNullOrEmpty() && !passDb.isNullOrEmpty()) {
                 _dataSuccess.postValue(true)
+                dataStoreManager.saveStatusLogin()
                 dataStoreManager.saveEmail(email)
             } else {
                 _dataSuccess.postValue(false)
             }
-        }
-    }
-
-    fun saveStatusLogin() {
-        viewModelScope.launch {
-            dataStoreManager.saveStatusLogin()
         }
     }
 }

@@ -89,6 +89,7 @@ dependencies {
 
     //coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
 
     //room database
     implementation 'androidx.room:room-runtime:2.4.2'
@@ -112,7 +113,7 @@ dependencies {
     // data store
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
-    //viewmodel
+    // viewmodel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
 
@@ -123,4 +124,8 @@ dependencies {
     //Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    //mockk
+    testImplementation "io.mockk:mockk:1.9.3"
+    testImplementation "io.mockk:mockk-agent-jvm:1.9.3"
 }

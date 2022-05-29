@@ -11,6 +11,6 @@ interface FavoritesMovieDao {
     @Delete
     fun deleteFavorites(favoritesMovie: FavoritesMovie): Int
 
-    @Query("SELECT movie_id FROM FavoritesMovie WHERE profile_id = :profileId")
-    fun getFavoritesById(profileId: Int): Int
+    @Query("SELECT movie_id FROM FavoritesMovie WHERE profile_email = :email")
+    fun getFavoritesByEmail(email: String): Int
 }

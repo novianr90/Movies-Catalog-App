@@ -20,9 +20,9 @@ class FavoritesViewModel @Inject constructor(private val localRepository: LocalR
         }
     }
 
-    fun getFavorites(profileId: Int) = liveData(Dispatchers.IO) {
+    fun getFavorites(email: String) = liveData(Dispatchers.IO) {
         try {
-            emit(Resource.success(data = localRepository.getFavoritesById(profileId)))
+            emit(Resource.success(data = localRepository.getFavoritesByEmail(email)))
         } catch (exception: Exception) {
             emit(Resource.error(data = null, message = exception.message ?: "Error Occurred"))
         }

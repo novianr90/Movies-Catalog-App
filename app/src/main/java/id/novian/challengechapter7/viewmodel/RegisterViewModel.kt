@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import id.novian.challengechapter7.helper.DataStoreManager
 import id.novian.challengechapter7.model.local.entity.Profile
 import id.novian.challengechapter7.repository.LocalRepository
 import kotlinx.coroutines.launch
@@ -13,8 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val localRepository: LocalRepository,
-    private val dataStoreManager: DataStoreManager
+    private val localRepository: LocalRepository
 ) : ViewModel() {
     private var _dataSuccess = MutableLiveData<Boolean>()
     val dataSuccess: LiveData<Boolean> get() = _dataSuccess
@@ -32,21 +30,9 @@ class RegisterViewModel @Inject constructor(
         }
     }
 
-    fun saveEmail(email: String) {
-        viewModelScope.launch {
-            dataStoreManager.saveEmail(email)
-        }
-    }
-
     fun insertProfile(profile: Profile) {
         viewModelScope.launch {
             localRepository.insertProfile(profile)
-        }
-    }
-
-    fun setStatusLogin() {
-        viewModelScope.launch {
-            dataStoreManager.saveStatusLogin()
         }
     }
 }

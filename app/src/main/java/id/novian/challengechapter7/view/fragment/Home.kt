@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import id.novian.challengechapter7.databinding.FragmentHomeBinding
+import id.novian.challengechapter7.helper.Status
 import id.novian.challengechapter7.view.adapter.HomeAdapter
 import id.novian.challengechapter7.viewmodel.HomeViewModel
 
@@ -37,10 +39,10 @@ class Home : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getEmail()
-        setUsernameView()
-        ivProfileClicked()
         initRecyclerView()
+        getEmail()
+        observe()
+        ivFavoritesClicked()
     }
 
     private fun initRecyclerView() {
@@ -52,26 +54,52 @@ class Home : Fragment() {
     }
 
     private fun nextToDetails(id: Int) {
-        val action = HomeDirections.actionHome2ToDetails(id)
+        val action = HomeDirections.actionHome2ToDetails(movieId = id)
         findNavController().navigate(action)
     }
 
-    private fun ivProfileClicked() {
+    private fun ivProfileClicked(email: String) {
         binding.ivProfile.setOnClickListener {
-            findNavController().navigate(HomeDirections.actionHome2ToProfile())
+            findNavController().navigate(HomeDirections.actionHome2ToProfile(email))
+        }
+    }
+
+    private fun ivFavoritesClicked() {
+        binding.ivFavorites.setOnClickListener {
+            findNavController().navigate(HomeDirections.actionHome2ToFavorite())
         }
     }
 
     private fun getEmail() {
         viewModel.getEmail().observe(viewLifecycleOwner) {
             viewModel.getUsername(it)
+            ivProfileClicked(it)
         }
     }
 
-    private fun setUsernameView() {
+    private fun observe() {
         viewModel.usernameDb.observe(viewLifecycleOwner) {
             val username = "Welcome, $it"
             binding.tvGreeting.text = username
+        }
+
+        viewModel.getAllPopularMovies().observe(viewLifecycleOwner) { res ->
+            when (res.status) {
+                Status.LOADING -> {
+                    binding.pbHome.visibility = View.VISIBLE
+                }
+
+                Status.SUCCESS -> {
+                    res.data?.let { homeAdapter.submitList(it.results) }
+                    binding.pbHome.visibility = View.GONE
+                }
+
+                Status.ERROR -> {
+                    binding.pbHome.visibility = View.GONE
+                    Toast.makeText(requireContext(), res.message, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
         }
     }
 }

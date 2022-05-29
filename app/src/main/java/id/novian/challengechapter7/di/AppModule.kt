@@ -22,11 +22,11 @@ class AppModule {
     @Provides
     fun provideLocalRepository(@ApplicationContext context: Context) = LocalRepository(context)
 
-    @Provides
     @Singleton
+    @Provides
     fun provideApiService() = ApiClient.instance
 
-    @Provides
     @Singleton
+    @Provides
     fun provideNetworkRepository(apiService: ApiService) = NetworkRepository(apiService)
 }

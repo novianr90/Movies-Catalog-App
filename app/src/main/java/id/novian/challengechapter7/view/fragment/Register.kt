@@ -61,10 +61,8 @@ class Register : Fragment() {
     private fun observe(profile: Profile) {
         viewModel.dataSuccess.observe(viewLifecycleOwner) {
             if (it) {
-                viewModel.setStatusLogin()
-                viewModel.saveEmail(profile.email)
                 viewModel.insertProfile(profile)
-                findNavController().navigate(RegisterDirections.actionRegisterToHome2())
+                findNavController().navigate(RegisterDirections.actionRegisterToLogin())
             } else {
                 createToast("Profile Already Registered")
             }

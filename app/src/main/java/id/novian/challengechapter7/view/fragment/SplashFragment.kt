@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import id.novian.challengechapter7.R
 import id.novian.challengechapter7.databinding.FragmentSplashBinding
 import id.novian.challengechapter7.viewmodel.SplashViewModel
 import kotlinx.coroutines.delay
@@ -44,10 +45,12 @@ class SplashFragment : Fragment() {
     private suspend fun splashNextToPage() {
         delay(2000)
         viewModel.checkStatusLogin().observe(requireActivity()) {
-            if (it) {
-                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToHome2())
-            } else {
-                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToLogin())
+            view?.post {
+                if (it) {
+                    findNavController().navigate(R.id.action_splashFragment_to_home2)
+                } else {
+                    findNavController().navigate(R.id.action_splashFragment_to_login)
+                }
             }
         }
     }

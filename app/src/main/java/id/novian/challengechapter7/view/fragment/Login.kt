@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import id.novian.challengechapter7.databinding.FragmentLoginBinding
 import id.novian.challengechapter7.viewmodel.LoginViewModel
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class Login : Fragment() {
@@ -19,6 +21,17 @@ class Login : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: LoginViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(this, backPressed)
+    }
+
+    private val backPressed = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            exitProcess(0)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,7 +69,6 @@ class Login : Fragment() {
     private fun observe() {
         viewModel.dataSuccess.observe(viewLifecycleOwner) {
             if (it) {
-                viewModel.saveStatusLogin()
                 findNavController().navigate(LoginDirections.actionLoginToHome2())
             } else {
                 createToast("Profile not Found")

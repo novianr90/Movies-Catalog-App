@@ -11,6 +11,6 @@ interface ImageSourceDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSrc(imageSource: ImageSource): Long
 
-    @Query("SELECT image_src FROM ImageSource WHERE profile_id = :profileId")
-    fun getImageById(profileId: Int): String
+    @Query("SELECT image_src FROM ImageSource WHERE profile_email = :email")
+    fun getImageByEmail(email: String): String
 }

@@ -34,7 +34,6 @@ class HomeViewModel @Inject constructor(
 
     fun getAllPopularMovies() = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
-
         try {
             emit(Resource.success(data = networkRepository.getPopular()))
         } catch (exception: Exception) {

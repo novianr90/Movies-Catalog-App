@@ -48,8 +48,8 @@ class LocalRepository(context: Context) {
         db?.imageSourceDao()?.insertSrc(imageSource)
     }
 
-    suspend fun getImageById(profileId: Int) = withContext(Dispatchers.IO) {
-        db?.imageSourceDao()?.getImageById(profileId)
+    suspend fun getImageByEmail(email: String) = withContext(Dispatchers.IO) {
+        db?.imageSourceDao()?.getImageByEmail(email)
     }
     //End Image Source
 
@@ -63,8 +63,8 @@ class LocalRepository(context: Context) {
         db?.favoritesMovieDao()?.deleteFavorites(favoritesMovie)
     }
 
-    suspend fun getFavoritesById(profileId: Int) = withContext(Dispatchers.IO) {
-        db?.favoritesMovieDao()?.getFavoritesById(profileId)
+    suspend fun getFavoritesByEmail(email: String) = withContext(Dispatchers.IO) {
+        db?.favoritesMovieDao()?.getFavoritesByEmail(email)
     }
     //End Favorites Movie
 }

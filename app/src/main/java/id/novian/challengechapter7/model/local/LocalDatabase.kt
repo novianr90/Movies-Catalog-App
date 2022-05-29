@@ -11,7 +11,7 @@ import id.novian.challengechapter7.model.local.entity.FavoritesMovie
 import id.novian.challengechapter7.model.local.entity.ImageSource
 import id.novian.challengechapter7.model.local.entity.Profile
 
-@Database(entities = [Profile::class, ImageSource::class, FavoritesMovie::class], version = 1)
+@Database(entities = [Profile::class, ImageSource::class, FavoritesMovie::class], version = 2)
 abstract class LocalDatabase : RoomDatabase() {
     abstract fun profileDao(): ProfileDao
     abstract fun imageSourceDao(): ImageSourceDao
@@ -27,6 +27,7 @@ abstract class LocalDatabase : RoomDatabase() {
                         context.applicationContext,
                         LocalDatabase::class.java, "LocalDatabase.db"
                     )
+//                        .fallbackToDestructiveMigration()
                         .build()
                 }
             }
