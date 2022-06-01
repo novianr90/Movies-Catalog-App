@@ -15,7 +15,6 @@ import id.novian.challengechapter7.R
 import id.novian.challengechapter7.databinding.FragmentDetailsBinding
 import id.novian.challengechapter7.helper.Status
 import id.novian.challengechapter7.helper.toDateDetail
-import id.novian.challengechapter7.model.local.entity.FavoritesMovie
 import id.novian.challengechapter7.model.network.model.details.DetailsResponse
 import id.novian.challengechapter7.viewmodel.DetailsViewModel
 
@@ -47,10 +46,6 @@ class Details : Fragment() {
         observe(id)
     }
 
-    private fun fabClicked(email: String, id: Int) {
-        viewModel.insertFavorites(FavoritesMovie(null, email, id))
-    }
-
     private fun observe(id: Int) {
         viewModel.getDetails(id).observe(viewLifecycleOwner) { resource ->
             when (resource.status) {
@@ -78,10 +73,6 @@ class Details : Fragment() {
                 }
 
             }
-        }
-
-        viewModel.getEmail().observe(viewLifecycleOwner) {
-            fabClicked(it, id)
         }
 
     }

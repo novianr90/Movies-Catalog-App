@@ -62,13 +62,15 @@ class Login : Fragment() {
             if (checkDataNullOrEmpty(email, password)) {
                 viewModel.checkEmailAndPassword(email, password)
             }
-            observe()
+            observe(email)
         }
     }
 
-    private fun observe() {
+    private fun observe(email: String) {
         viewModel.dataSuccess.observe(viewLifecycleOwner) {
             if (it) {
+                viewModel.saveEmail(email)
+                viewModel.saveLogin()
                 findNavController().navigate(LoginDirections.actionLoginToHome2())
             } else {
                 createToast("Profile not Found")

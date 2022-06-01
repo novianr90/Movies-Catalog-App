@@ -134,7 +134,7 @@ class Profile : Fragment() {
                     }
                 }
             } else {
-                binding.ivProfile.setImageResource(R.drawable.ic_add)
+                binding.ivProfile.setImageResource(R.drawable.ic_profile)
             }
         }
     }

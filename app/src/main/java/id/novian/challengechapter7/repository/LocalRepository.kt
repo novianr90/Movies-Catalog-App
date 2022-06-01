@@ -2,7 +2,6 @@ package id.novian.challengechapter7.repository
 
 import android.content.Context
 import id.novian.challengechapter7.model.local.LocalDatabase
-import id.novian.challengechapter7.model.local.entity.FavoritesMovie
 import id.novian.challengechapter7.model.local.entity.ImageSource
 import id.novian.challengechapter7.model.local.entity.Profile
 import kotlinx.coroutines.Dispatchers
@@ -52,19 +51,4 @@ class LocalRepository(context: Context) {
         db?.imageSourceDao()?.getImageByEmail(email)
     }
     //End Image Source
-
-
-    //Start Favorites Movie
-    suspend fun insertFavorites(favoritesMovie: FavoritesMovie) = withContext(Dispatchers.IO) {
-        db?.favoritesMovieDao()?.insertFavorites(favoritesMovie)
-    }
-
-    suspend fun deleteFavorites(favoritesMovie: FavoritesMovie) = withContext(Dispatchers.IO) {
-        db?.favoritesMovieDao()?.deleteFavorites(favoritesMovie)
-    }
-
-    suspend fun getFavoritesByEmail(email: String) = withContext(Dispatchers.IO) {
-        db?.favoritesMovieDao()?.getFavoritesByEmail(email)
-    }
-    //End Favorites Movie
 }

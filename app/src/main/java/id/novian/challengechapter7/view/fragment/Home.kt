@@ -42,7 +42,6 @@ class Home : Fragment() {
         initRecyclerView()
         getEmail()
         observe()
-        ivFavoritesClicked()
     }
 
     private fun initRecyclerView() {
@@ -64,12 +63,6 @@ class Home : Fragment() {
         }
     }
 
-    private fun ivFavoritesClicked() {
-        binding.ivFavorites.setOnClickListener {
-            findNavController().navigate(HomeDirections.actionHome2ToFavorite())
-        }
-    }
-
     private fun getEmail() {
         viewModel.getEmail().observe(viewLifecycleOwner) {
             viewModel.getUsername(it)
@@ -78,9 +71,9 @@ class Home : Fragment() {
     }
 
     private fun observe() {
-        viewModel.usernameDb.observe(viewLifecycleOwner) {
-            val username = "Welcome, $it"
-            binding.tvGreeting.text = username
+        viewModel.usernameDb.observe(viewLifecycleOwner) { username ->
+            val result = "Welcome, ${username}!"
+            binding.tvGreeting.text = result
         }
 
         viewModel.getAllPopularMovies().observe(viewLifecycleOwner) { res ->

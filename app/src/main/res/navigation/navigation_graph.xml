@@ -46,9 +46,6 @@
         <action
             android:id="@+id/action_home2_to_profile"
             app:destination="@id/profile" />
-        <action
-            android:id="@+id/action_home2_to_favorite"
-            app:destination="@id/favorite" />
     </fragment>
     <fragment
         android:id="@+id/register"
@@ -86,9 +83,4 @@
             android:defaultValue="default"
             app:argType="string" />
     </fragment>
-    <fragment
-        android:id="@+id/favorite"
-        android:name="id.novian.challengechapter7.view.fragment.Favorite"
-        android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
 </navigation>
